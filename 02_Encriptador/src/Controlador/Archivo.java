@@ -16,6 +16,7 @@ import java.io.IOException;
  * @author Rafael
  */
 public class Archivo {
+    
     public String leerArchivo(String path) throws FileNotFoundException, IOException, ClassNotFoundException{
         
         File file = new File(path);
@@ -43,8 +44,7 @@ public class Archivo {
         return file;    
     }
    
-    
-  
+
     public void encriptarArchivo(String path,String key) throws FileNotFoundException, IOException, ClassNotFoundException{
         
         char[] clave = key.toCharArray();
@@ -75,9 +75,8 @@ public class Archivo {
             }
         }
                     
-        String newPath = this.crearDirectorio(path, "Encriptado");
-        
-        this.escribirArchivo(newPath, texto);
+        String nP = this.crearDirectorio(path, "Encriptado");
+        this.escribirArchivo(nP, texto);
         
         
     }
@@ -94,18 +93,14 @@ public class Archivo {
                
        String directory = pathname + dirName;
        new File(directory).mkdirs();
-       
        return directory+"\\"+tokens[tokens.length-1];
-       
     }
     
     public void desencriptarArchivo(String path,String key) throws FileNotFoundException, IOException, ClassNotFoundException{        
         char[] clave = key.toCharArray();
         File file = new File(path);
-   
         String contenido = this.leerArchivo(file.getAbsolutePath());
-        char[] cadena = contenido.toCharArray();
-                
+        char[] cadena = contenido.toCharArray();    
         String texto = "";
         int valor;
         int suma;
@@ -130,7 +125,7 @@ public class Archivo {
             }
         }
                     
-        String newPath = this.crearDirectorio(path, "Desencriptado");
-        this.escribirArchivo(newPath, texto);
+        String nP = this.crearDirectorio(path, "Desencriptado");
+        this.escribirArchivo(nP, texto);
     }
 }
